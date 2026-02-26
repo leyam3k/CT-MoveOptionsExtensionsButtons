@@ -1,0 +1,80 @@
+/* Erase standard input bar margin behaviors inside the sidebar */
+.ct-sidebar-button #options_button,
+.ct-sidebar-button #extensionsMenuButton {
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* Ensure display flex is applied natively for visibility */
+.ct-sidebar-button #options_button:not([style*="display: none"]),
+.ct-sidebar-button #extensionsMenuButton:not([style*="display: none"]) {
+    display: flex;
+}
+
+/* Clear icon margins */
+.ct-sidebar-button #options_button i,
+.ct-sidebar-button #extensionsMenuButton i {
+    margin: 0 !important;
+}
+
+/* ====================================================================
+   Popout Direction Adjustments (Overrides Popper.js Vertical Flow)
+   ==================================================================== */
+
+/* Popout to the LEFT (When Sidebar is on the Right) - DESKTOP */
+#options.ct-sidebar-integrated.ct-popout-left[data-popper-placement^="top"],
+#extensionsMenu.ct-sidebar-integrated.ct-popout-left[data-popper-placement^="top"] {
+    translate: calc(-100% - 15px) 90px !important;
+}
+#options.ct-sidebar-integrated.ct-popout-left[data-popper-placement^="bottom"],
+#extensionsMenu.ct-sidebar-integrated.ct-popout-left[data-popper-placement^="bottom"] {
+    translate: calc(-100% - 15px) -90px !important;
+}
+
+/* Popout to the RIGHT (When Sidebar is on the Left) - ALL DEVICES */
+#options.ct-sidebar-integrated.ct-popout-right[data-popper-placement^="top"],
+#extensionsMenu.ct-sidebar-integrated.ct-popout-right[data-popper-placement^="top"] {
+    translate: 45px 90px !important;
+}
+#options.ct-sidebar-integrated.ct-popout-right[data-popper-placement^="bottom"],
+#extensionsMenu.ct-sidebar-integrated.ct-popout-right[data-popper-placement^="bottom"] {
+    translate: 45px -90px !important;
+}
+
+/* Fallbacks in case Popper hasn't computed the attribute yet */
+#options.ct-sidebar-integrated.ct-popout-left:not([data-popper-placement]),
+#extensionsMenu.ct-sidebar-integrated.ct-popout-left:not([data-popper-placement]) {
+    translate: calc(-100% - 15px) 90px !important;
+}
+#options.ct-sidebar-integrated.ct-popout-right:not([data-popper-placement]),
+#extensionsMenu.ct-sidebar-integrated.ct-popout-right:not([data-popper-placement]) {
+    translate: 45px 90px !important;
+}
+
+/* ====================================================================
+   Mobile Adjustments
+   ==================================================================== */
+@media (max-width: 768px), (orientation: portrait) {
+    /* On mobile, Popper.js forcefully pushes the menu to the screen edge.
+       Adjust the first value (-30px) to move it left (more negative) or right (less negative). */
+       
+    #options.ct-sidebar-integrated.ct-popout-left[data-popper-placement^="top"],
+    #extensionsMenu.ct-sidebar-integrated.ct-popout-left[data-popper-placement^="top"] {
+        translate: -35px 90px !important;
+    }
+    #options.ct-sidebar-integrated.ct-popout-left[data-popper-placement^="bottom"],
+    #extensionsMenu.ct-sidebar-integrated.ct-popout-left[data-popper-placement^="bottom"] {
+        translate: -35px -90px !important;
+    }
+    #options.ct-sidebar-integrated.ct-popout-left:not([data-popper-placement]),
+    #extensionsMenu.ct-sidebar-integrated.ct-popout-left:not([data-popper-placement]) {
+        translate: -35px 90px !important;
+    }
+}
